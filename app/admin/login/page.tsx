@@ -28,7 +28,7 @@ export default function AdminLoginPage() {
       }
 
       // Hard redirect so middleware re-evaluates the cookie
-      window.location.href = '/admin'
+      window.location.replace('/admin')
     } catch {
       setError('Network error. Please try again.')
     } finally {
