@@ -17,7 +17,7 @@ export default function HeroSection() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-2">
         <div className="relative z-10">
           {/* Subtitle with primaryLight bg matching episode category chips */}
-          <div className="mb-12 inline-block rounded-full bg-primaryLight px-3 py-1 md:mb-16">
+          <div className="mb-8 inline-block rounded-full bg-primaryLight px-3 py-1 md:mb-10">
             <p className="text-xs font-bold uppercase tracking-widest text-white">
               Conversations About Migration & Homeland.
             </p>

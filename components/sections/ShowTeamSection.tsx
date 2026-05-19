@@ -4,7 +4,7 @@ const team = [
   {
     name: 'Yohannes Gebreab',
     role: 'Host and Managing Director',
-    image: '/assets/team-1.jpg',
+    image: '/assets/yhonannes.png',
   },
   {
     name: 'Tsega Brlay',

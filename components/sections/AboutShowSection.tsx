@@ -1,7 +1,61 @@
 'use client'
 
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
+
+const symbols = ['=', '≠', '>', '<']
+
+function AnimatedEquation() {
+  const [index, setIndex] = useState(0)
+   const [flipping, setFlipping] = useState(false)
+
+  const next = useCallback(() => {
+    setFlipping(true)
+    setTimeout(() => {
+      setIndex((prev) => (prev + 1) % symbols.length)
+      setFlipping(false)
+    }, 400)
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(next, 2500)
+    return () => clearInterval(timer)
+  }, [next])
+
+  return (
+    <div className="mt-8 flex items-center justify-center gap-6 sm:gap-10 select-none">
+      {/* ስደት */}
+      <span className="heading-font text-[clamp(40px,5vw,72px)] font-black leading-none text-primary">
+        ስደት
+      </span>
+
+      {/* Circle with animated symbol */}
+      <div
+        className="relative flex h-28 w-28 items-center justify-center rounded-full border-4 border-primary bg-secondary sm:h-32 sm:w-32"
+        style={{
+          transform: flipping ? 'scaleX(-1)' : 'scaleX(1)',
+          transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+        }}
+      >
+        <span
+          className="heading-font text-[clamp(48px,6vw,64px)] font-black leading-none text-primary"
+          style={{
+            transform: flipping ? 'scaleX(-1)' : 'scaleX(1)',
+            transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
+          }}
+        >
+          {symbols[index]}
+        </span>
+      </div>
+
+      {/* ሀገር */}
+      <span className="heading-font text-[clamp(40px,5vw,72px)] font-black leading-none text-primary">
+        ሀገር
+      </span>
+    </div>
+  )
+}
 
 export default function AboutShowSection() {
   const { scrollY } = useScroll()
@@ -19,7 +73,7 @@ export default function AboutShowSection() {
           {/* Image side - pushed up with negative margin to align with text */}
           <motion.div style={{ y }} className="flex justify-start -mt-12">
             <div className="relative">
-              <div className="h-[420px] w-full max-w-md overflow-hidden rounded-3xl shadow-2xl">
+              <div className="h-[520px] w-full max-w-lg overflow-hidden rounded-3xl shadow-2xl">
                 <Image
                   src="/assets/about-the-show2.jpg"
                   alt="About The Show"
@@ -39,14 +93,10 @@ export default function AboutShowSection() {
               About The Show
             </p>
 
-            <h2 className="heading-font mt-4 text-4xl font-black text-primary md:text-5xl">
-              Bridging Worlds
-              <span className="block text-2xl font-normal text-primaryLight md:text-3xl">
-                Through Authentic Stories
-              </span>
-            </h2>
-
             <div className="mt-6 h-1 w-20 bg-secondary" />
+
+            {/* Animated equation: ስደት [symbol] ሀገር */}
+            <AnimatedEquation />
 
             <div className="mt-8 space-y-6 text-base leading-relaxed text-gray-700">
               <p>
@@ -67,20 +117,14 @@ export default function AboutShowSection() {
               </p>
             </div>
 
-            {/* Stats row */}
-            <div className="mt-10 grid grid-cols-3 gap-6 border-t border-gray-200 pt-8">
-              <div className="text-center">
-                <div className="heading-font text-2xl font-black text-primary">45-60</div>
-                <div className="mt-1 text-xs font-medium uppercase tracking-wider text-gray-500">Min Episodes</div>
-              </div>
-              <div className="text-center">
-                <div className="heading-font text-2xl font-black text-primary">5+</div>
-                <div className="mt-1 text-xs font-medium uppercase tracking-wider text-gray-500">Categories</div>
-              </div>
-              <div className="text-center">
-                <div className="heading-font text-2xl font-black text-primary">Global</div>
-                <div className="mt-1 text-xs font-medium uppercase tracking-wider text-gray-500">Reach</div>
-              </div>
+            {/* Title restored below description */}
+            <div className="mt-10">
+              <h2 className="heading-font text-4xl font-black text-secondary md:text-5xl">
+                Bridging Worlds
+                <span className="block text-2xl font-normal text-primaryLight md:text-3xl">
+                  Through Authentic Stories
+                </span>
+              </h2>
             </div>
           </div>
         </div>
