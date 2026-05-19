@@ -1,14 +1,12 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
-import { useRouter } from 'next/navigation'
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const router = useRouter()
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -29,7 +27,8 @@ export default function AdminLoginPage() {
         return
       }
 
-      router.push('/admin')
+      // Hard redirect so middleware re-evaluates the cookie
+      window.location.href = '/admin'
     } catch {
       setError('Network error. Please try again.')
     } finally {
