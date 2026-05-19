@@ -4,28 +4,13 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Allow access to login page and static files
-  if (pathname === '/admin/login') {
-    return NextResponse.next()
-  }
-
-  // Only protect /admin routes
+  // Only protect /admin/* routes
   if (!pathname.startsWith('/admin')) {
     return NextResponse.next()
   }
 
-  const token = request.cookies.get('admin_token')?.value
-
-  if (!token) {
-    return NextResponse.redirect(new URL('/admin/login', request.url))
-  }
-
-  // Simple format check — actual verification happens on the API side
-  const parts = token.split('.')
-  if (parts.length !== 3) {
-    return NextResponse.redirect(new URL('/admin/login', request.url))
-  }
-
+  // Allow everything through — auth protection is handled
+  // by the admin layout via cookies() + jwt.verify server-side
   return NextResponse.next()
 }
 
