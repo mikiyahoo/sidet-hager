@@ -24,22 +24,22 @@ function AnimatedEquation() {
   }, [next])
 
   return (
-    <div className="mt-8 flex items-center justify-center gap-6 sm:gap-10 select-none">
+    <div className="mt-8 flex items-center justify-center gap-8 sm:gap-14 select-none">
       {/* ስደት */}
-      <span className="heading-font text-[clamp(40px,5vw,72px)] font-black leading-none text-primary">
+      <span className="heading-font text-[clamp(48px,5vw,80px)] font-black leading-none text-primary">
         ስደት
       </span>
 
       {/* Circle with animated symbol */}
       <div
-        className="relative flex h-28 w-28 items-center justify-center rounded-full border-4 border-primary bg-secondary sm:h-32 sm:w-32"
+        className="relative flex h-36 w-36 items-center justify-center rounded-full border-4 border-primary bg-secondary sm:h-40 sm:w-40"
         style={{
           transform: flipping ? 'scaleX(-1)' : 'scaleX(1)',
           transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
         }}
       >
         <span
-          className="heading-font text-[clamp(48px,6vw,64px)] font-black leading-none text-primary"
+          className="heading-font text-[100px] font-black leading-none text-primary"
           style={{
             transform: flipping ? 'scaleX(-1)' : 'scaleX(1)',
             transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
@@ -50,7 +50,7 @@ function AnimatedEquation() {
       </div>
 
       {/* ሀገር */}
-      <span className="heading-font text-[clamp(40px,5vw,72px)] font-black leading-none text-primary">
+      <span className="heading-font text-[clamp(48px,5vw,80px)] font-black leading-none text-primary">
         ሀገር
       </span>
     </div>
