@@ -1,0 +1,3 @@
+approveBuilds: '@prisma/* prisma sharp'
+
+onlyBuiltDependencies: '@prisma/client'

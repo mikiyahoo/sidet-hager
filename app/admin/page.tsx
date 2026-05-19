@@ -1,13 +1,33 @@
+'use client'
+
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export default function AdminDashboard() {
+  const router = useRouter()
+
+  async function handleLogout() {
+    await fetch('/api/auth/logout', { method: 'POST' })
+    router.push('/admin/login')
+  }
+
   return (
     <div className="min-h-screen bg-backgroundLight px-6 py-24 md:px-12">
       <div className="mx-auto max-w-5xl">
-        <h1 className="heading-font text-4xl font-bold text-primary">
-          Admin Dashboard
-        </h1>
-        <div className="mt-3 h-1 w-16 bg-secondary" />
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="heading-font text-4xl font-bold text-primary">
+              Admin Dashboard
+            </h1>
+            <div className="mt-3 h-1 w-16 bg-secondary" />
+          </div>
+          <button
+            onClick={handleLogout}
+            className="rounded-xl bg-red-500 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-red-600"
+          >
+            Logout
+          </button>
+        </div>
 
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           <Link
