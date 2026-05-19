@@ -24,7 +24,7 @@ export default function AnimatedFlipWord() {
           animate={{ rotateX: 0, opacity: 1 }}
           exit={{ rotateX: 90, opacity: 0 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
-          className="heading-font absolute left-0 rounded-2xl bg-secondary px-6 py-3 text-5xl font-extrabold text-primary md:text-7xl"
+          className="amharic-font absolute left-0 rounded-2xl bg-secondary px-6 py-3 text-5xl font-extrabold text-primary md:text-7xl"
           style={{ transformOrigin: '50% 80%', transformStyle: 'preserve-3d' }}
         >
           {words[index]}

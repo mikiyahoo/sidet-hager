@@ -19,6 +19,7 @@ const config: Config = {
       fontFamily: {
         heading: ['Branding SF W05', 'Inter', 'sans-serif'],
         body: ['Montserrat', 'sans-serif'],
+        amharic: ['Nokia Pure Headline', 'Branding SF W05', 'sans-serif'],
       },
       fontWeight: {
         black: '900',

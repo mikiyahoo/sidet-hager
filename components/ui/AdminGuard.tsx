@@ -5,21 +5,22 @@ import { useRouter } from 'next/navigation'
 
 export default function AdminGuard({ children }: { children: React.ReactNode }) {
   const [authorized, setAuthorized] = useState(false)
+  const [checking, setChecking] = useState(true)
   const router = useRouter()
 
   useEffect(() => {
-    // Simple check: verify the admin_token cookie exists
-    // If redirected here from login, the cookie should be present
-    const hasToken = document.cookie.includes('admin_token=')
-    
-    if (!hasToken) {
-      router.replace('/admin/login')
-    } else {
-      setAuthorized(true)
-    }
+    fetch('/api/auth/verify')
+      .then((res) => {
+        if (!res.ok) throw new Error()
+        setAuthorized(true)
+      })
+      .catch(() => {
+        router.replace('/admin/login')
+      })
+      .finally(() => setChecking(false))
   }, [router])
 
-  if (!authorized) {
+  if (checking) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-primary">
         <div className="text-center">
@@ -29,6 +30,8 @@ export default function AdminGuard({ children }: { children: React.ReactNode }) 
       </div>
     )
   }
+
+  if (!authorized) return null
 
   return <>{children}</>
 }

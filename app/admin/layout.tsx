@@ -1,5 +1,8 @@
+'use client'
+
 import { ReactNode } from 'react'
+import AdminGuard from '@/components/ui/AdminGuard'
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
-  return <>{children}</>
+  return <AdminGuard>{children}</AdminGuard>
 }

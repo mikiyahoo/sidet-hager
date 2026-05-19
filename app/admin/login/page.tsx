@@ -27,8 +27,9 @@ export default function AdminLoginPage() {
         return
       }
 
-      // Hard redirect so middleware re-evaluates the cookie
-      window.location.replace('/admin')
+      // Use Next.js router for client-side navigation to avoid
+      // invalidating the layout router state
+      window.location.href = '/admin'
     } catch {
       setError('Network error. Please try again.')
     } finally {

@@ -24,7 +24,7 @@ export default function HeroSection() {
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
-            <h1 className="heading-font text-5xl font-extrabold leading-tight text-primary md:text-7xl">
+            <h1 className="amharic-font text-5xl font-extrabold leading-tight text-primary md:text-7xl">
               እውነተኛ
             </h1>
 

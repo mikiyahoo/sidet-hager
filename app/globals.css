@@ -26,6 +26,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Nokia Pure Headline';
+  src: url('/fonts/Nokia Pure Headline_XBD.TTF') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -39,6 +47,10 @@ body {
 
 .heading-font {
   font-family: 'Branding SF W05', sans-serif;
+}
+
+.amharic-font {
+  font-family: 'Nokia Pure Headline', 'Branding SF W05', sans-serif;
 }
 
 .glass-header {
