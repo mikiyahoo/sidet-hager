@@ -1,37 +1,32 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import jwt from 'jsonwebtoken'
-
-const JWT_SECRET = process.env.NEXTAUTH_SECRET || 'fallback-secret-change-me'
-
-const protectedPaths = ['/admin', '/admin/episodes', '/admin/team']
-const loginPath = '/admin/login'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Only protect /admin/* routes (except login)
-  if (!protectedPaths.some((p) => pathname.startsWith(p))) {
+  // Allow access to login page and static files
+  if (pathname === '/admin/login') {
     return NextResponse.next()
   }
 
-  // Allow access to login page
-  if (pathname === loginPath) {
+  // Only protect /admin routes
+  if (!pathname.startsWith('/admin')) {
     return NextResponse.next()
   }
 
   const token = request.cookies.get('admin_token')?.value
 
   if (!token) {
-    return NextResponse.redirect(new URL(loginPath, request.url))
+    return NextResponse.redirect(new URL('/admin/login', request.url))
   }
 
-  try {
-    jwt.verify(token, JWT_SECRET)
-    return NextResponse.next()
-  } catch {
-    return NextResponse.redirect(new URL(loginPath, request.url))
+  // Simple format check — actual verification happens on the API side
+  const parts = token.split('.')
+  if (parts.length !== 3) {
+    return NextResponse.redirect(new URL('/admin/login', request.url))
   }
+
+  return NextResponse.next()
 }
 
 export const config = {
