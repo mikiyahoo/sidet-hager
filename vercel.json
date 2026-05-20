@@ -1,6 +1,6 @@
 {
   "version": 2,
   "buildCommand": "prisma generate --no-engine && next build",
-  "installCommand": "npx pnpm install --frozen-lockfile",
+  "installCommand": "pnpm install --no-frozen-lockfile",
   "framework": "nextjs"
 }
